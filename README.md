@@ -6,6 +6,7 @@
 
 ## 更新记录
 - 新增：
+  - 20220318: 更改<出校报备>功能, 适配新的<封校报备>功能.
   - 20210917：增加自动检测并报备<出校报备>功能.
   - 20210821：使用pytesseract识别登录二维码，支持二维码验证登录打卡。
   - 20210818：适配新的打卡数据, 将新增的敏感信息以参数方式传递, 放入secrets中。
@@ -16,6 +17,10 @@
   - 20200826：为配合学校最新规定，切换至Github Actions实现一天三次打卡
  
 ## 使用方法
+
+-2. **请自行修改report.yml，以适配自身需求。fork后原始的report.yml有两条python命令可以给两人打卡，如不需要请删除第二个以免一直报错。**
+
+-1. **数据有两个，一个是在家data_athome.json(需要自行修改地址)，另一个是在学校data_atschool.json(默认参数住中区)。请在report.yml中自行修改设置。**
 
 0. **写在前面：请在自己fork的仓库中修改，并push到自己的仓库，不要直接修改本仓库，也不要将您的修改pull request到本仓库（对本仓库的改进除外）！如果尚不了解github的基本使用方法，请参阅[使用议题和拉取请求进行协作/使用复刻](https://docs.github.com/cn/github/collaborating-with-issues-and-pull-requests/working-with-forks)和[使用议题和拉取请求进行协作/通过拉取请求提议工作更改](https://docs.github.com/cn/github/collaborating-with-issues-and-pull-requests/proposing-changes-to-your-work-with-pull-requests)。**
 

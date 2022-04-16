@@ -82,6 +82,7 @@ class Report(object):
             print("report success!")
         else:
             print("unknown error, code: "+str(res.status_code))
+        return True
         
         # 自动出校报备
         ret = session.get("https://weixine.ustc.edu.cn/2020/apply/daliy/i")
@@ -121,7 +122,7 @@ class Report(object):
             print("error! code "+ret.status_code)
             #出错
             return False
-        return True
+        # return True
 
 
     def login(self):

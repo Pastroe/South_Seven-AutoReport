@@ -159,9 +159,9 @@ class Report(object):
         if True:
             #每日报备
             print("开始例行报备.")
-            delta = datetime.timedelta(hours=4)
+            delta = datetime.timedelta(hours=12)
             start_date = (datetime.datetime.now() + delta).strftime('%Y-%m-%d+00:00:01')
-            end_date = (datetime.datetime.now() + delta + datetime.timedelta(days = 1)).strftime('%Y-%m-%d+23:59:59')
+            end_date =   (datetime.datetime.now() + delta).strftime('%Y-%m-%d+23:59:59')
             
             print("{}---{}".format(start_date, end_date))
 

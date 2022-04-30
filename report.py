@@ -13,6 +13,7 @@ import io
 import os
 from bs4 import BeautifulSoup
 import PIL
+import numpy as np
 import pytesseract
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry

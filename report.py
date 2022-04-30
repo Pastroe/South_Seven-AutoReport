@@ -100,52 +100,52 @@ class Report(object):
             print("unknown error, code: "+str(res.status_code))
             
         # 自动上传健康码
-        can_upload_code = 1              
-        r = session.get(UPLOAD_PAGE_URL)
-        pos = r.text.find("每周可上报时间为周一凌晨0:00至周日中午12:00,其余时间将关闭相关功能。")
-        #print("position: "+str(pos))
-        if(pos != -1):
-            print("当前处于不可上报时间，请换其他时间上传健康码。")
-            can_upload_code = 0
-        for idx, description in UPLOAD_INFO:
-            if(can_upload_code == 0):
-                print(f"ignore {description}.")
-                continue
-            if(self.pic[idx - 1] == ''):
-                self.pic[idx - 1] = DEFAULT_PIC[idx - 1]
-            #print(self.pic[idx - 1])
-            ret = session.get(self.pic[idx - 1])
-            blob = ret.content
-            #print(len(blob))
-            #print(ret.status_code)
-            if blob == None or ret.status_code != 200:
-                print(f"ignore {description}.")
-                continue        
-
-            #print(r.text)
-            r = session.get(UPLOAD_PAGE_URL)
-            x = re.search(r"""<input.*?name="_token".*?>""", r.text).group(0)
-            re.search(r'value="(\w*)"', x).group(1)
-            
-            url = UPLOAD_IMAGE_URL.format(idx)
-            
-            payload = {
-            "_token": token,
-            "id": f"WU_FILE_{idx}",
-            "name": f"{description}.png",
-            "type": "image/png",
-            "lastModifiedDate": datetime.datetime.now()
-                .strftime("%a %b %d %Y %H:%M:%S GMT+0800 (China Standard Time)"),
-            "size": f"{len(blob)}",
-            }
-            payload_files = {"file": (payload["name"], blob)}
-            headers_upload = session.headers
-            headers_upload['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36'
-            r = session.post(url, data=payload, files=payload_files, headers=headers_upload)
-            print(r)
-            #print(r.text)
-            r.raise_for_status()
-            print(f"Uploaded {description}: {r.json()['status']}")
+        #can_upload_code = 1              
+        #r = session.get(UPLOAD_PAGE_URL)
+        #pos = r.text.find("每周可上报时间为周一凌晨0:00至周日中午12:00,其余时间将关闭相关功能。")
+        ##print("position: "+str(pos))
+        #if(pos != -1):
+        #    print("当前处于不可上报时间，请换其他时间上传健康码。")
+        #    can_upload_code = 0
+        #for idx, description in UPLOAD_INFO:
+        #    if(can_upload_code == 0):
+        #        print(f"ignore {description}.")
+        #        continue
+        #    if(self.pic[idx - 1] == ''):
+        #        self.pic[idx - 1] = DEFAULT_PIC[idx - 1]
+        #    #print(self.pic[idx - 1])
+        #    ret = session.get(self.pic[idx - 1])
+        #    blob = ret.content
+        #    #print(len(blob))
+        #    #print(ret.status_code)
+        #    if blob == None or ret.status_code != 200:
+        #        print(f"ignore {description}.")
+        #        continue        
+        #
+        #    #print(r.text)
+        #    r = session.get(UPLOAD_PAGE_URL)
+        #    x = re.search(r"""<input.*?name="_token".*?>""", r.text).group(0)
+        #    re.search(r'value="(\w*)"', x).group(1)
+        #    
+        #    url = UPLOAD_IMAGE_URL.format(idx)
+        #    
+        #    payload = {
+        #    "_token": token,
+        #    "id": f"WU_FILE_{idx}",
+        #    "name": f"{description}.png",
+        #    "type": "image/png",
+        #    "lastModifiedDate": datetime.datetime.now()
+        #        .strftime("%a %b %d %Y %H:%M:%S GMT+0800 (China Standard Time)"),
+        #    "size": f"{len(blob)}",
+        #    }
+        #    payload_files = {"file": (payload["name"], blob)}
+        #    headers_upload = session.headers
+        #    headers_upload['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36'
+        #    r = session.post(url, data=payload, files=payload_files, headers=headers_upload)
+        #    print(r)
+        #    #print(r.text)
+        #    r.raise_for_status()
+        #    print(f"Uploaded {description}: {r.json()['status']}")
             
             
             

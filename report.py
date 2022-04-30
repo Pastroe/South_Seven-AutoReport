@@ -98,7 +98,7 @@ class Report(object):
             return False
         else:
             print("unknown error, code: "+str(res.status_code))
-            
+       
         # 自动上传健康码
         #can_upload_code = 1              
         #r = session.get(UPLOAD_PAGE_URL)
@@ -148,7 +148,6 @@ class Report(object):
         #    print(f"Uploaded {description}: {r.json()['status']}")
             
             
-            
         
         # 自动出校报备
         # ret = session.get("https://weixine.ustc.edu.cn/2020/apply/daliy/i?t=3")
@@ -168,7 +167,7 @@ class Report(object):
             REPORT_URL = "https://weixine.ustc.edu.cn/2020/apply/daliy/post"
             RETURN_COLLEGE = {'东校区', '西校区', '中校区', '南校区', '北校区'}
             REPORT_DATA = {
-                '_token': token2,
+                '_token': token,
                 'start_date': start_date,
                 'end_date': end_date,
                 'return_college[]': RETURN_COLLEGE,
@@ -187,7 +186,7 @@ class Report(object):
             print("error! code "+ret.status_code)
             #出错
             return False
-        return True
+        # return True
 
 
     def login(self):

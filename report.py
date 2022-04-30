@@ -161,7 +161,7 @@ class Report(object):
             print("开始例行报备.")
             delta = datetime.timedelta(seconds = np.random.randint(5), microseconds = np.random.randint(1000))
             start_date = (datetime.datetime.now() + delta).strftime('%Y-%m-%d+%H:%M:%S')
-            end_date = (datetime.datetime.now() + delta + datetime.timedelta(days = 1)).strftime('%Y-%m-%d+%H:%M:%S')
+            end_date = (datetime.datetime.now() + delta + datetime.timedelta(days = 1)).strftime('%Y-%m-%d+23:59:59')
             
             print("{}---{}".format(start_date, end_date))
 

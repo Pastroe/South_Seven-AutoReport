@@ -151,20 +151,17 @@ class Report(object):
             
         
         # 自动出校报备
-        ret = session.get("https://weixine.ustc.edu.cn/2020/apply/daliy/i?t=3")
-        #print(ret.status_code)
-        if (ret.url == "https://weixine.ustc.edu.cn/2020/upload/xcm"):
-            print("未上传两码，请手动上传两码或杀了制定这个规则的壬的马。")
-            return True
-        if (ret.status_code == 200):
+        # ret = session.get("https://weixine.ustc.edu.cn/2020/apply/daliy/i?t=3")
+        # #print(ret.status_code)
+        # if (ret.url == "https://weixine.ustc.edu.cn/2020/upload/xcm"):
+        #     print("未上传两码，请手动上传两码或杀了制定这个规则的壬的马。")
+        #     return True
+        if True:
             #每日报备
             print("开始例行报备.")
-            data = ret.text
-            data = data.encode('ascii','ignore').decode('utf-8','ignore')
-            soup = BeautifulSoup(data, 'html.parser')
-            token2 = soup.find("input", {"name": "_token"})['value']
-            start_date = soup.find("input", {"id": "start_date"})['value']
-            end_date = soup.find("input", {"id": "end_date"})['value']
+            delta = datetime.timedelta(seconds = np.random.randint(5), microseconds = np.random.randint(1000))
+            start_date = (datetime.datetime.now() + delta).strftime('%Y-%m-%d+%H:%M:%S')
+            end_date = (datetime.datetime.now() + delta + datetime.timedelta(days = 1)).strftime('%Y-%m-%d+%H:%M:%S')
             
             print("{}---{}".format(start_date, end_date))
 
